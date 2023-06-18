@@ -17,6 +17,8 @@ public class MaskUtilsTest {
     public void setUp(){
         testMap.put("password", MaskSensitiveData.PASSWORD.name());
         testMap.put("secondUser","Nikith");
+        testMap.put("token",MaskSensitiveData.TOKEN.name());
+        testMap.put("firstUser","Sandeep");
         maskUtils = new MaskUtils();
     }
 
@@ -24,19 +26,16 @@ public class MaskUtilsTest {
     public void test_Sensitive_Data_should_be_masked(){
 
         Map<String, String> actualMap = maskUtils.maskData(testMap);
-        String actualValue = actualMap.get("password");
-        assertEquals(actualValue,maskString);
+        assertEquals(actualMap.get("password"),maskString);
+        assertEquals(actualMap.get("token"),maskString);
     }
 
     @Test
     public void test_non_Sensitive_Data_should_not_be_masked(){
 
         Map<String, String> actualMap = maskUtils.maskData(testMap);
-        String expectedValue = "Nikith";
-        String actualValue = actualMap.get("secondUser");
-
-        assertEquals(actualValue,expectedValue);
-
+        assertEquals(actualMap.get("firstUser"),testMap.get("firstUser"));
+        assertEquals(actualMap.get("secondUser"),testMap.get("secondUser"));
     }
 
     @After
