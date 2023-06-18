@@ -21,7 +21,7 @@ public class MaskUtilsTest {
     }
 
     @Test
-    public void test_Masked_Sensitive_Data(){
+    public void test_Sensitive_Data_should_be_masked(){
 
         Map<String, String> actualMap = maskUtils.maskData(testMap);
         String actualValue = actualMap.get("password");
@@ -29,7 +29,7 @@ public class MaskUtilsTest {
     }
 
     @Test
-    public void test_Not_Masked_NON_Sensitive_Data(){
+    public void test_non_Sensitive_Data_should_not_be_masked(){
 
         Map<String, String> actualMap = maskUtils.maskData(testMap);
         String expectedValue = "Nikith";
