@@ -8,7 +8,7 @@ public class MaskUtils {
 
     public Map<String, String> maskData(Map<String, String> headersMap) {
 
-        Map<String, String> maskedMap = headersMap.entrySet().stream()
+        return headersMap.entrySet().stream()
                 .map(header ->
                 {
                     if (Arrays.stream(MaskSensitiveData.values())
@@ -17,7 +17,5 @@ public class MaskUtils {
                     }
                     return header;
                 }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        return maskedMap;
     }
 }
